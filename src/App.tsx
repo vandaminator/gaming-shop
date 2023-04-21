@@ -1,8 +1,14 @@
-function App() {
+import GameDb from "./utils/data/data";
 
-  return (
-    <div>hello world<div>
-  )
+const gameDb = new GameDb
+console.log(gameDb.numGames)
+
+function App() {
+  return <div>hello world</div>;
 }
 
-export default App
+fetch('data/json/game-data.json')
+.then((a) => a.json())
+.then(a => console.log(a))
+
+export default App;
