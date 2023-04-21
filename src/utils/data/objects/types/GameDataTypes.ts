@@ -175,8 +175,9 @@ export interface PlatformPlatform {
 }
 
 export interface Requirements {
-    minimum?:     string;
+    minimum?:      string;
     recommended?: string;
+    devices?: string[] | string;
 }
 
 export interface Rating {

@@ -2,11 +2,14 @@ import { intersection, isEqual, matches } from "lodash";
 import gameData from "./objects/GameData";
 import gameList from "./objects/GameList";
 import gameScreenShots from "./objects/GameScreenShots";
+import { gameGenres, gameTags } from "./objects/GameGenresTags";
 
 class GameDb {
   infoGames = gameData
   listGames = gameList.results
   screenShots = gameScreenShots
+  genres = gameGenres
+  tags = gameTags
   numGames = this.listGames.length
 
   showList(start: number = 0, number: number = 1) {
@@ -27,7 +30,7 @@ class GameDb {
       const sameGenres = intersection(genres, itemGenres)
       const sameTags = intersection(tags, itemTags)
 
-      const metCondition = isEqual(sameGenres, genres) || isEqual(sameTags, tags)
+      const metCondition = isEqual(sameGenres, genres) && isEqual(sameTags, tags)
 
       if (metCondition) {
         return true

@@ -1,14 +1,12 @@
 import GameDb from "./utils/data/data";
 
 const gameDb = new GameDb
-console.log(gameDb.numGames)
+const genres = gameDb.genres
+const tags = gameDb.tags
+console.log(gameDb.showFilter([genres[1]], [tags[3]]))
 
 function App() {
   return <div>hello world</div>;
 }
-
-fetch('data/json/game-data.json')
-.then((a) => a.json())
-.then(a => console.log(a))
 
 export default App;

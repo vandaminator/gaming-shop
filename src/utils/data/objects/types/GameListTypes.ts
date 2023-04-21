@@ -70,6 +70,7 @@ export interface Result {
     tags:               Genre[];
     esrb_rating:        EsrbRating | null;
     short_screenshots:  ShortScreenshot[];
+    price:              number;
 }
 
 export interface AddedByStatus {
@@ -174,8 +175,9 @@ export interface PlatformPlatform {
 }
 
 export interface Requirements {
-    minimum:      string;
+    minimum?:      string;
     recommended?: string;
+    devices?: string[] | string;
 }
 
 export interface Rating {
