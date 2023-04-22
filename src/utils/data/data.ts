@@ -1,4 +1,4 @@
-import { intersection, isEqual, matches } from "lodash";
+import { intersection, isEqual } from "lodash";
 import gameData from "./objects/GameData";
 import gameList from "./objects/GameList";
 import gameScreenShots from "./objects/GameScreenShots";
