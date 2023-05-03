@@ -10,6 +10,10 @@ const colors = {
     800: "#153e75",
     700: "#2a69ac",
   },
+  navyBlue: "#213A52",
+  accentBlue: "#00BFFF",
+  lightOrange: "#FFA800",
+  darkGrey: "#333333",
 };
 
 const theme = extendTheme({ colors });
