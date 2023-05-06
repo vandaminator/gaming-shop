@@ -9,14 +9,34 @@ import {
   Drawer,
   DrawerOverlay,
   DrawerContent,
+  Flex,
   DrawerCloseButton,
+  DrawerBody,
+  DrawerHeader,
+  DrawerFooter,
+  Link
 } from "@chakra-ui/react";
-import { cancelIcon, logoIcon, menuIcon, searchIcon } from "../icons";
+import * as icons from "../icons";
+import MenuItem from "./MenuItem";
 import { useRef } from "react";
 
 function NavBar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const menuRef = useRef(document.getElementById("menu-btn"));
+
+  const { cart1Icon, starIcon, tagIcon } = icons;
+  const menuItemsInfo = [
+    { icon: cart1Icon, link: "#", name: "Cart" },
+    { icon: starIcon, link: "#", name: "Popular" },
+    { icon: tagIcon, link: "#", name: "Genres" },
+    { icon: tagIcon, link: "#", name: "Tags" },
+  ];
+
+  const menuItems = menuItemsInfo.map((value, index) => {
+    const { icon, link, name } = value;
+    return <MenuItem icon={icon} link={link} name={name} />;
+  });
+
   return (
     <>
       <Box
@@ -34,10 +54,10 @@ function NavBar() {
           _hover={{ bg: "inherit" }}
           onClick={onOpen}
         >
-          <Image src={menuIcon} alt="" width={"40px"} />
+          <Image src={icons.menuIcon} alt="" width={"40px"} />
         </Button>
         <a href="#">
-          <Image src={logoIcon} alt="" width={"60px"} />
+          <Image src={icons.logoIcon} alt="" width={"60px"} />
         </a>
 
         <InputGroup
@@ -48,7 +68,9 @@ function NavBar() {
           borderRadius={"99"}
           variant={"filled"}
         >
-          <InputLeftElement children={<Image src={searchIcon} w={"20px"} />} />
+          <InputLeftElement
+            children={<Image src={icons.searchIcon} w={"20px"} />}
+          />
           <Input bg={"inherit"} borderRadius={"99"} placeholder="Search ..." />
         </InputGroup>
       </Box>
@@ -59,8 +81,29 @@ function NavBar() {
         finalFocusRef={menuRef}
       >
         <DrawerOverlay />
-        <DrawerContent>
-          <DrawerCloseButton />
+        <DrawerContent bg={"darkGrey"}>
+          <DrawerCloseButton color={"lightOrange"} />
+          <DrawerHeader color={"lightOrange"}>
+            Menu
+          </DrawerHeader>
+          <DrawerBody m={0} p={0}>
+            <Box>
+              <Flex
+                direction={"column"}
+                justify="start"
+                color={"lightOrange"}
+              >
+                {menuItems}
+              </Flex>
+            </Box>
+          </DrawerBody>
+          <DrawerFooter p={2} justifyContent={'start'} >
+            <Box display={'flex'} flexDirection={'column'}>
+              <Link href="#" color={'white'}>About</Link>
+              <Link href="#" color={'white'}>GitHub repo</Link>
+              <Link href="#" color={'white'}>Made By Phomolo Ntokoane</Link>
+            </Box>
+          </DrawerFooter>
         </DrawerContent>
       </Drawer>
     </>

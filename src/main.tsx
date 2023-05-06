@@ -3,6 +3,9 @@ import * as ReactDOM from "react-dom/client";
 import React from "react";
 import App from "./App";
 
+import store from "./store";
+import { Provider } from "react-redux";
+
 // 2. Extend the theme to include custom colors, fonts, etc
 const colors = {
   brand: {
@@ -25,8 +28,10 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <ChakraProvider theme={theme}>
-      <App />
-    </ChakraProvider>
+    <Provider store={store}>
+      <ChakraProvider theme={theme}>
+        <App />
+      </ChakraProvider>
+    </Provider>
   </React.StrictMode>
 );
