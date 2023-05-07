@@ -28,11 +28,10 @@ import { storeProps } from "../types";
 function NavBar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const menuRef = useRef(document.getElementById("menu-btn"));
-  const a = useSelector((state: storeProps) => state.system)
-  console.log(a);
-  
+  const menuItemsInfo = useSelector((state: storeProps) => state.system.menuItems)
 
-  const menuItemsInfo = a.menuItems
+  const gameDb = useSelector((state: storeProps) => state.gameDb.data)
+  console.log(gameDb.numGames)
 
   const menuItems = menuItemsInfo.map((value, index) => {
     const { icon, link, name } = value;
