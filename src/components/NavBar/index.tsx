@@ -14,7 +14,10 @@ import {
   DrawerBody,
   DrawerHeader,
   DrawerFooter,
-  Link
+  Link,
+  Text,
+  LinkOverlay,
+  LinkBox
 } from "@chakra-ui/react";
 import * as icons from "../icons";
 import MenuItem from "./MenuItem";
@@ -44,8 +47,9 @@ function NavBar() {
         padding={"29px"}
         color={"white"}
         display={"flex"}
-        justifyContent={"space-between"}
+        justifyContent={{base: "space-between", xl: 'space-around'}}
         alignItems={"center"}
+        
       >
         <Button
           id="menu-btn"
@@ -53,12 +57,20 @@ function NavBar() {
           w={"fit-content"}
           _hover={{ bg: "inherit" }}
           onClick={onOpen}
+          sx ={{
+            '@media (min-width: 1024px)': {
+              display: 'none'
+            }
+          }}
         >
           <Image src={icons.menuIcon} alt="" width={"40px"} />
         </Button>
-        <a href="#">
+        <LinkBox display={'flex'} alignItems={'center'}>
           <Image src={icons.logoIcon} alt="" width={"60px"} />
-        </a>
+          <LinkOverlay href="#">
+            <Text id="gaming-logo" fontWeight={'bold'} color={'lightOrange'} fontSize={'3xl'} fontFamily='monospace'>Game Nexus</Text>
+            </LinkOverlay>
+        </LinkBox>
 
         <InputGroup
           w={"40%"}

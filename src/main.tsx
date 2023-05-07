@@ -2,6 +2,9 @@ import { extendTheme, ChakraProvider } from "@chakra-ui/react";
 import * as ReactDOM from "react-dom/client";
 import React from "react";
 import App from "./App";
+import '@fontsource/bangers'
+
+import './index.css'
 
 import store from "./store";
 import { Provider } from "react-redux";

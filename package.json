@@ -12,6 +12,7 @@
     "@chakra-ui/react": "^2.6.0",
     "@emotion/react": "^11.10.8",
     "@emotion/styled": "^11.10.8",
+    "@fontsource/bangers": "^4.5.9",
     "@reduxjs/toolkit": "^1.9.5",
     "framer-motion": "^10.12.6",
     "lodash": "^4.17.21",
