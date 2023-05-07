@@ -17,26 +17,26 @@ import {
   Link,
   Text,
   LinkOverlay,
-  LinkBox
+  LinkBox,
 } from "@chakra-ui/react";
 import * as icons from "../icons";
 import MenuItem from "./MenuItem";
 import { useRef } from "react";
+import { useSelector } from "react-redux";
+import { storeProps } from "../types";
 
 function NavBar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const menuRef = useRef(document.getElementById("menu-btn"));
+  const a = useSelector((state: storeProps) => state.system)
+  console.log(a);
+  
 
-  const menuItemsInfo = [
-    { icon: icons.cart1Icon, link: "#", name: "Cart" },
-    { icon: icons.starIcon, link: "#", name: "Popular" },
-    { icon: icons.tagIcon, link: "#", name: "Genres" },
-    { icon: icons.tagIcon, link: "#", name: "Tags" },
-  ];
+  const menuItemsInfo = a.menuItems
 
   const menuItems = menuItemsInfo.map((value, index) => {
     const { icon, link, name } = value;
-    return <MenuItem icon={icon} link={link} name={name} />;
+    return <MenuItem icon={icon} link={link} name={name} key={index} />;
   });
 
   return (
@@ -46,9 +46,8 @@ function NavBar() {
         padding={"29px"}
         color={"white"}
         display={"flex"}
-        justifyContent={{base: "space-between", xl: 'space-around'}}
+        justifyContent={{ base: "space-between", xl: "space-around" }}
         alignItems={"center"}
-        
       >
         <Button
           id="menu-btn"
@@ -56,19 +55,32 @@ function NavBar() {
           w={"fit-content"}
           _hover={{ bg: "inherit" }}
           onClick={onOpen}
-          sx ={{
-            '@media (min-width: 1024px)': {
-              display: 'none'
-            }
+          sx={{
+            "@media (min-width: 1024px)": {
+              display: "none",
+            },
           }}
         >
-          <Image src={icons.menuIcon} alt='' />
+          <Image src={icons.menuIcon} alt="" />
         </Button>
-        <LinkBox display={'flex'} alignItems={'center'}>
+        <LinkBox display={"flex"} alignItems={"center"}>
           <Image src={icons.logoIcon} alt="" width={"60px"} />
           <LinkOverlay href="#">
-            <Text id="gaming-logo" fontWeight={'bold'} color={'lightOrange'} fontSize={'3xl'} fontFamily='monospace'>Game Nexus</Text>
-            </LinkOverlay>
+            <Text
+              id="gaming-logo"
+              fontWeight={"bold"}
+              color={"lightOrange"}
+              fontSize={"3xl"}
+              fontFamily="monospace"
+              sx={{
+                '@media (max-width: 760px)': {
+                  display: 'none'
+                }
+              }}
+            >
+              Game Nexus
+            </Text>
+          </LinkOverlay>
         </LinkBox>
 
         <InputGroup
@@ -94,25 +106,25 @@ function NavBar() {
         <DrawerOverlay />
         <DrawerContent bg={"darkGrey"}>
           <DrawerCloseButton color={"lightOrange"} />
-          <DrawerHeader color={"lightOrange"}>
-            Menu
-          </DrawerHeader>
+          <DrawerHeader color={"lightOrange"}>Menu</DrawerHeader>
           <DrawerBody m={0} p={0}>
             <Box>
-              <Flex
-                direction={"column"}
-                justify="start"
-                color={"lightOrange"}
-              >
+              <Flex direction={"column"} justify="start" color={"lightOrange"}>
                 {menuItems}
               </Flex>
             </Box>
           </DrawerBody>
-          <DrawerFooter p={2} justifyContent={'start'} >
-            <Box display={'flex'} flexDirection={'column'}>
-              <Link href="#" color={'white'}>About</Link>
-              <Link href="#" color={'white'}>GitHub repo</Link>
-              <Link href="#" color={'white'}>Made By Phomolo Ntokoane</Link>
+          <DrawerFooter p={2} justifyContent={"start"}>
+            <Box display={"flex"} flexDirection={"column"}>
+              <Link href="#" color={"white"}>
+                About
+              </Link>
+              <Link href="#" color={"white"}>
+                GitHub repo
+              </Link>
+              <Link href="#" color={"white"}>
+                Made By Phomolo Ntokoane
+              </Link>
             </Box>
           </DrawerFooter>
         </DrawerContent>

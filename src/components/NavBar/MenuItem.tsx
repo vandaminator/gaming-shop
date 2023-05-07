@@ -4,9 +4,10 @@ interface MenuItemProps {
   icon: string;
   name: string;
   link: string;
+  key: number
 }
 
-function MenuItem({ icon, name, link }: MenuItemProps) {
+function MenuItem({ icon, name, link, key }: MenuItemProps) {
   return (
     <LinkBox
       bg={"navyBlue"}
@@ -15,6 +16,7 @@ function MenuItem({ icon, name, link }: MenuItemProps) {
       color={'lightOrange'}
       width={'full'}
       height={'80px'}
+      key={key}
     >
       <LinkOverlay pl={'10px'} h='full' href={link} display={'flex'} justifyContent={'start'} alignItems={'center'} >
         <Image src={icon} width={"40px"} mr={'20px'} />
