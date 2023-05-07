@@ -27,12 +27,11 @@ function NavBar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const menuRef = useRef(document.getElementById("menu-btn"));
 
-  const { cart1Icon, starIcon, tagIcon } = icons;
   const menuItemsInfo = [
-    { icon: cart1Icon, link: "#", name: "Cart" },
-    { icon: starIcon, link: "#", name: "Popular" },
-    { icon: tagIcon, link: "#", name: "Genres" },
-    { icon: tagIcon, link: "#", name: "Tags" },
+    { icon: icons.cart1Icon, link: "#", name: "Cart" },
+    { icon: icons.starIcon, link: "#", name: "Popular" },
+    { icon: icons.tagIcon, link: "#", name: "Genres" },
+    { icon: icons.tagIcon, link: "#", name: "Tags" },
   ];
 
   const menuItems = menuItemsInfo.map((value, index) => {
@@ -63,7 +62,7 @@ function NavBar() {
             }
           }}
         >
-          <Image src={icons.menuIcon} alt="" width={"40px"} />
+          <Image src={icons.menuIcon} alt='' />
         </Button>
         <LinkBox display={'flex'} alignItems={'center'}>
           <Image src={icons.logoIcon} alt="" width={"60px"} />
