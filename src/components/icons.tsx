@@ -1,14 +1,14 @@
-import menuIcon from "../assets/Menu.svg";
-import addIcon from "../assets/Add.svg";
-import arrowIcon from "../assets/Arrow.svg";
-import cancelIcon from "../assets/Cancel.svg";
-import cart1Icon from "../assets/Cart 1.svg";
-import cartIcon from "../assets/Cart.svg";
-import gridIcon from "../assets/Grid.svg";
-import logoIcon from "../assets/logo.svg";
-import searchIcon from "../assets/Search.svg";
-import starIcon from "../assets/Star.svg";
-import tagIcon from "../assets/Tag.svg";
+import menuIcon from "../assets/icon/Menu.svg";
+import addIcon from "../assets/icon/Add.svg";
+import arrowIcon from "../assets/icon/Arrow.svg";
+import cancelIcon from "../assets/icon/Cancel.svg";
+import cart1Icon from "../assets/icon/Cart 1.svg";
+import cartIcon from "../assets/icon/Cart.svg";
+import gridIcon from "../assets/icon/Grid.svg";
+import logoIcon from "../assets/icon/logo.svg";
+import searchIcon from "../assets/icon/Search.svg";
+import starIcon from "../assets/icon/Star.svg";
+import tagIcon from "../assets/icon/Tag.svg";
 
 export {
   menuIcon,
