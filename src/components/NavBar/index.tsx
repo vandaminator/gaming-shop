@@ -31,8 +31,7 @@ function NavBar() {
   const menuItemsInfo = useSelector((state: storeProps) => state.system.menuItems)
 
   const gameDb = useSelector((state: storeProps) => state.gameDb.data)
-  console.log(gameDb.numGames)
-
+  
   const menuItems = menuItemsInfo.map((value, index) => {
     const { icon, link, name } = value;
     return <MenuItem icon={icon} link={link} name={name} key={index} />;
