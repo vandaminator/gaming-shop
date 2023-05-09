@@ -1,4 +1,4 @@
-import TopGames from "./TopGames";
+import TopGames from "./TopGames/TopGames";
 
 function MainPage() {
   return (

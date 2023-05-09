@@ -159,7 +159,13 @@ class GameDb {
       return 0
     };
     games.sort(sortTop)
-    return games.slice(0, number)
+    const showGames = games.slice(0, number)
+    const gameInfos = showGames.map((value) => {
+      const {id} = value
+      const game = this.showData(id.toString())
+      return game
+    })
+    return gameInfos
   }
 }
 export default GameDb;
