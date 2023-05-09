@@ -24,7 +24,7 @@ class GameDb {
 
   showData(id: string) {
     // infoGames is an object with information on games
-    // and the keys are the id of the game which give information 
+    // and the keys are the id of the game which give information
     // on a game
     return this.infoGames[id];
   }
@@ -43,12 +43,12 @@ class GameDb {
       // gets the tags and genres which are in both in the
       // criteria and the game. this will be used to check if game
       // fits criteria. the game fits criteria if @param genres and tags are
-      // a subset of @itemGenres and @itemTags 
+      // a subset of @itemGenres and @itemTags
       const sameGenres = intersection(genres, itemGenres);
       const sameTags = intersection(tags, itemTags);
 
       // if @param genres and tags are
-      // a subset of @itemGenres and @itemTags 
+      // a subset of @itemGenres and @itemTags
       // @metCondition will be true
       const metCondition =
         isEqual(sameGenres, genres) && isEqual(sameTags, tags);
@@ -123,14 +123,49 @@ class GameDb {
     Games.sort(sortSimilar);
     // the most similar games are at the end of the array
     // to make it easy to access them, reverse array
-    Games.reverse()
+    Games.reverse();
     // the game itself we are trying to get similar games for will be included
-    // in the array. we will remove that game like this 
-    const similarGames = Games.filter(item => item.id !== +id)
+    // in the array. we will remove that game like this
+    const similarGames = Games.filter((item) => item.id !== +id);
     // using @param: number to give a specified number of games which are most similar
     // to that game
-    const showSimilarGames = similarGames.slice(0, number)
-    return showSimilarGames
+    const showSimilarGames = similarGames.slice(0, number);
+    return showSimilarGames;
+  }
+
+  showTopGames(number = 10) {
+    const games = this.listGames.slice();
+    const sortTop = (game: Result, other: Result) => {
+      const {
+        added: gameNumber,
+        reviews_count: gameReviewNum,
+        ratings_count: gameRatingNum,
+      } = game;
+
+      const {
+        added: otherNumber,
+        reviews_count: otherReviewNum,
+        ratings_count: otherRatingNum,
+      } = other;
+
+      const gamePopularScore = gameNumber + gameRatingNum + gameReviewNum
+      const otherPopularScore = otherNumber + otherRatingNum + otherReviewNum
+
+      const gameMoreOther = gamePopularScore > otherPopularScore
+      const otherMoreGame = gamePopularScore < otherPopularScore
+
+      if (gameMoreOther) return -1;
+      if (otherMoreGame) return 1;
+      return 0
+    };
+    games.sort(sortTop)
+    const showGames = games.slice(0, number)
+    const gameInfos = showGames.map((value) => {
+      const {id} = value
+      const game = this.showData(id.toString())
+      return game
+    })
+    return gameInfos
   }
 }
 export default GameDb;

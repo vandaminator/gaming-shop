@@ -1,13 +1,19 @@
 import GameDb from "./utils/data/data";
+import { NavBar, Main } from "./components/componets";
+import { Box } from "@chakra-ui/react";
 
-const gameDb = new GameDb()
-// const genres = gameDb.genres
-// const tags = gameDb.tags
-// console.log(gameDb.showFilter([genres[1]], [tags[3]]))
-console.log(gameDb.showSimilar('3543', 3))
+const gameDb = new GameDb();
+const game = gameDb.listGames[0];
+const gameImg = game.background_image;
+const topgames = gameDb.showTopGames(2);
 
 function App() {
-  return <div>hello world</div>;
+  return (
+    <Box>
+      <NavBar />
+      <Main />
+    </Box>
+  );
 }
 
 export default App;

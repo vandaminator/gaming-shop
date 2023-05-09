@@ -1,1 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
 
+#gaming-logo {
+  font-family: "gameyfont", sans-serif;
+}
+
+@font-face {
+  font-family: "gameyfont";
+  src: url("./assets/font/pdark.ttf");
+}
