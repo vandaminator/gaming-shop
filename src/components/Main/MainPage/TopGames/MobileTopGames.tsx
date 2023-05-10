@@ -4,7 +4,8 @@ import { TopGamesProps } from "./TopGames";
 function MobileTopGames({
   background_image,
   name,
-  description_raw,
+  tags,
+  genres,
 }: TopGamesProps) {
   return (
     <AspectRatio
@@ -46,15 +47,6 @@ function MobileTopGames({
           h="full"
         >
           <Text>{name}</Text>
-          <Text
-            w={{ base: "full", lg: "40%" }}
-            h="40%"
-            overflow={"scroll"}
-            fontWeight="semibold"
-            fontSize={"sm"}
-          >
-            {description_raw}
-          </Text>
         </Flex>
       </Box>
     </AspectRatio>
