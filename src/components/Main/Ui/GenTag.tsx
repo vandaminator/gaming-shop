@@ -48,9 +48,10 @@ function GenTag({ type, name, isButton = false, btnFunc = () => 1 }: genTag) {
       padding={"5px"}
       h="fit-content"
       fontWeight={"bold"}
-      fontSize={"sm"}
+      fontSize={"10px"}
       sx={style}
       borderRadius={'md'}
+      className='genTag'
     >
       {isButton && (
         <Button _hover={btnHover} p="0" m="0" w='fit-content' bg={"inherit"} onClick={btnFunc}>

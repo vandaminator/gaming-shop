@@ -18,12 +18,14 @@ import {
   Text,
   LinkOverlay,
   LinkBox,
+  Icon
 } from "@chakra-ui/react";
 import * as icons from "../icons";
 import MenuItem from "./MenuItem";
 import { useRef } from "react";
 import { useSelector } from "react-redux";
 import { storeProps } from "../types";
+import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 
 function NavBar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -62,7 +64,7 @@ function NavBar() {
           <Image src={icons.menuIcon} alt="" />
         </Button>
         <LinkBox display={"flex"} alignItems={"center"}>
-          <Image src={icons.logoIcon} alt="" width={"60px"} />
+        <Image src={icons.aLogo} w='60px' alt="" />
           <LinkOverlay href="#">
             <Text
               id="gaming-logo"
@@ -90,7 +92,7 @@ function NavBar() {
           variant={"filled"}
         >
           <InputLeftElement
-            children={<Image src={icons.searchIcon} w={"20px"} />}
+            children={<MagnifyingGlassIcon color='#00BFFF' width={'20px'} />}
           />
           <Input bg={"inherit"} borderRadius={"99"} placeholder="Search ..." />
         </InputGroup>

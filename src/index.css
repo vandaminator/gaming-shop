@@ -4,6 +4,10 @@
   font-family: "gameyfont", sans-serif;
 }
 
+.genTag {
+  margin: 3px;
+}
+
 @font-face {
   font-family: "gameyfont";
   src: url("./assets/font/pdark.ttf");
