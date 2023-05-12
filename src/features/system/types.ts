@@ -6,4 +6,9 @@ export interface menuItem {
 
 export interface systemTypes {
     menuItems: menuItem[]
+    topGameNum: number
+}
+
+export interface action {
+    payload: "next" | 'back'
 }

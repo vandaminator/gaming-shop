@@ -12,14 +12,14 @@ export const tagIcon = "src/assets/icons/Tag.svg";
 
 import aLogo from "../assets/icons/logo.svg";
 import aMenu from "../assets/icons/Menu.svg";
-import aAdd from "../assets/icons/Menu.svg";
-import aArrow from "../assets/icons/Menu.svg";
-import aCancel from "../assets/icons/Menu.svg";
-import aCart1 from "../assets/icons/Menu.svg";
-import aCart from "../assets/icons/Menu.svg";
-import aGrid from "../assets/icons/Menu.svg";
-import aSearch from "../assets/icons/Menu.svg";
-import aStar from "../assets/icons/Menu.svg";
+import aAdd from "../assets/icons/Add.svg";
+import aArrow from "../assets/icons/Arrow.svg";
+import aCancel from "../assets/icons/Cancel.svg";
+import aCart1 from "../assets/icons/Cart 1.svg";
+import aCart from "../assets/icons/Cart.svg";
+import aGrid from "../assets/icons/Grid.svg";
+import aSearch from "../assets/icons/Search.svg";
+import aStar from "../assets/icons/Star.svg";
 import aTag from "../assets/icons/Tag.svg";
 export { aLogo, aMenu, aAdd, aArrow, aCancel, aCart1, aCart, aGrid, aSearch, aStar, aTag };
 

@@ -1,4 +1,4 @@
-import { Box, Flex } from "@chakra-ui/react";
+import { Box, Flex, Text } from "@chakra-ui/react";
 import { Rating } from "../../../../utils/data/objects/types/GameDataTypes";
 
 interface RatingsProps {
@@ -29,12 +29,33 @@ function Ratings({ ratings }: RatingsProps) {
         break;
     }
 
+    return <Box key={index} w={percent} h={"full"} bg={bg} />;
+  });
+  const meaning = [
+    { title: "exceptional", color: "linear-gradient(180deg,#b4ec51,#429321)" },
+    { title: "recommended", color: "linear-gradient(0deg,#4354b9,#649bff)" },
+    { title: "meh", color: "linear-gradient(180deg,#fad961,#f76b1c)" },
+    { title: "skip", color: "linear-gradient(180deg,#ff5764,#f11a2a)" },
+  ];
+  const colorMeaning = meaning.map((value, index) => {
+    const { title, color } = value;
+
     return (
-      <Box key={index} w={percent} h={'full'} bg={bg} />
+      <Flex gap={'5px'} key={index} w={"fit-content"} fontSize={"sm"} align={'baseline'}>
+        <Box w={"10px"} h={"10px"} bg={color} borderRadius={"full"} />
+        <Text>{title}</Text>
+      </Flex>
     );
   });
 
-  return <Flex w={"full"} h={'20%'}>{rates}</Flex>;
+  return (
+    <>
+      <Flex w={"full"} h={"30px"}>
+        {rates}
+      </Flex>
+      <Flex w={"full"} wrap={"wrap"} gap={'10px'}>{colorMeaning}</Flex>
+    </>
+  );
 }
 
 export default Ratings;
