@@ -31,8 +31,6 @@ function NavBar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const menuRef = useRef(document.getElementById("menu-btn"));
   const menuItemsInfo = useSelector((state: storeProps) => state.system.menuItems)
-
-  const gameDb = useSelector((state: storeProps) => state.gameDb.data)
   
   const menuItems = menuItemsInfo.map((value, index) => {
     const { icon, link, name } = value;

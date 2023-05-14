@@ -3,6 +3,7 @@ import { storeProps } from "../../../types";
 import MobileTopGames from "./MobileTopGames";
 import DesktopTopGames from "./DesktopTopGames";
 import { Developer, Rating } from "../../../../utils/data/objects/types/GameDataTypes";
+import GameDb from "../../../../utils/data/data";
 
 export interface TopGamesProps {
   background_image: string;
@@ -14,7 +15,7 @@ export interface TopGamesProps {
 }
 
 function TopGames() {
-  const gameDb = useSelector((state: storeProps) => state.gameDb.data);
+  const gameDb = new GameDb()
   const topGames = gameDb.showTopGames(5);
   const { background_image, name, genres, tags, ratings, rating } = topGames[1];
   return (

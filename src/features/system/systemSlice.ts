@@ -17,14 +17,14 @@ const systemSlice = createSlice({
   initialState,
   reducers: {
     changeTopNum: (state, { payload }: action) => {
-      const isLast = state.topGameNum === 5;
+      const isLast = state.topGameNum === 4;
       const isFirst = state.topGameNum === 0;
 
       if (payload === "next") {
         if (isLast) state.topGameNum = 0;
         else state.topGameNum++;
       } else if (payload === "back") {
-        if (isFirst) state.topGameNum = 5;
+        if (isFirst) state.topGameNum = 4;
         else state.topGameNum -= 1;
       }
     },
