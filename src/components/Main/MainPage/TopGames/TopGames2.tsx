@@ -3,18 +3,24 @@ import { useSelector } from "react-redux";
 import { storeProps } from "../../../types";
 import TopNavigation from "./TopNavigation";
 import TopInfo from "./TopInfo";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function TopGames2() {
   const topgames = useSelector((state: storeProps) => state.gameDb.topGames);
-  const current = useSelector((state: storeProps) => state.system.topGameNum);
+  let current = useSelector((state: storeProps) => state.system.topGameNum);
   const gameDb = useSelector((state: storeProps) => state.gameDb.data)
   let game = topgames[current];
 
-  const { name, background_image: bgImage, rating, ratings: ratingList, id } = game;
+  let { name, background_image: bgImage, rating, ratings: ratingList, id } = game;
   const screenShoots = gameDb.screenShots[id.toString()].results.slice(0, 6)
 
   const [currentBg, setCurrentBg] = useState(bgImage)
+  const [currentGame, setCurrentGame] = useState(current)
+  
+  useEffect(() => {
+      console.log(currentGame)
+  }, [currentGame])
+
   return (
     <>
       <Box
@@ -38,9 +44,9 @@ function TopGames2() {
         >
           <TopInfo changeImg={setCurrentBg} name={name} rating={rating} ratings={ratingList} screenShots={screenShoots} />
           <TopNavigation
-            current={current}
-            nextFunc={() => {}}
-            backFunc={() => {}}
+            current={currentGame}
+            nextFunc={() => {setCurrentGame(1)}}
+            backFunc={() => {console.log('back')}}
           />
         </Flex>
       </Box>

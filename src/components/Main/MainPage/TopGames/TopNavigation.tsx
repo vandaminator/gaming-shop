@@ -24,9 +24,9 @@ function TopNavigation({ current, nextFunc, backFunc }: TopNav) {
 
   return (
     <Flex justify={"space-between"} align={"center"}>
-      <Button children={<ArrowLeft size={"20px"} />} />
+      <Button children={<ArrowLeft size={"20px"} />} onClick={backFunc} />
       <Stack direction={"row"}>{circles}</Stack>
-      <Button children={<ArrowRight size={"20px"} />} />
+      <Button children={<ArrowRight size={"20px"} />} onClick={nextFunc} />
     </Flex>
   );
 }
