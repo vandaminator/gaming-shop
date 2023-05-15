@@ -53,11 +53,7 @@ function NavBar() {
           w={"fit-content"}
           _hover={{ bg: "inherit" }}
           onClick={onOpen}
-          sx={{
-            "@media (min-width: 1024px)": {
-              display: "none",
-            },
-          }}
+          
         >
           <Image src={icons.menuIcon} alt="" />
         </Button>
