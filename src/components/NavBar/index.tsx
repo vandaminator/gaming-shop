@@ -17,30 +17,33 @@ import {
   Link,
   Text,
   LinkOverlay,
-  LinkBox,
-  Icon
+  LinkBox, Icon
 } from "@chakra-ui/react";
+import { Link as ReactRouterLink } from "react-router-dom";
 import * as icons from "../icons";
 import MenuItem from "./MenuItem";
 import { useRef } from "react";
 import { useSelector } from "react-redux";
 import { storeProps } from "../types";
-import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
+import { Bars3Icon, MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 
 function NavBar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const menuRef = useRef(document.getElementById("menu-btn"));
-  const menuItemsInfo = useSelector((state: storeProps) => state.system.menuItems)
-  
+  const menuItemsInfo = useSelector(
+    (state: storeProps) => state.system.menuItems
+  );
+
   const menuItems = menuItemsInfo.map((value, index) => {
     const { icon, link, name } = value;
-    return <MenuItem icon={icon} link={link} name={name} key={index} />;
+    return <MenuItem link={link} name={name} key={index} />;
   });
 
   return (
     <>
       <Box
         bg={"navyBlue"}
+        w={'full'}
         padding={"29px"}
         color={"white"}
         display={"flex"}
@@ -53,13 +56,12 @@ function NavBar() {
           w={"fit-content"}
           _hover={{ bg: "inherit" }}
           onClick={onOpen}
-          
         >
-          <Image src={icons.menuIcon} alt="" />
+          <Icon w='60px' h='60px' color='accentBlue' children={<Bars3Icon />} />
         </Button>
         <LinkBox display={"flex"} alignItems={"center"}>
-        <Image src={icons.aLogo} w='60px' alt="" />
-          <LinkOverlay href="#">
+          <Image src={icons.aLogo} w="60px" alt="" />
+          <LinkOverlay as={ReactRouterLink} to="#">
             <Text
               id="gaming-logo"
               fontWeight={"bold"}
@@ -67,9 +69,9 @@ function NavBar() {
               fontSize={"3xl"}
               fontFamily="monospace"
               sx={{
-                '@media (max-width: 760px)': {
-                  display: 'none'
-                }
+                "@media (max-width: 760px)": {
+                  display: "none",
+                },
               }}
             >
               Game Nexus
@@ -86,7 +88,7 @@ function NavBar() {
           variant={"filled"}
         >
           <InputLeftElement
-            children={<MagnifyingGlassIcon color='#00BFFF' width={'20px'} />}
+            children={<MagnifyingGlassIcon color="#00BFFF" width={"20px"} />}
           />
           <Input bg={"inherit"} borderRadius={"99"} placeholder="Search ..." />
         </InputGroup>
@@ -110,13 +112,13 @@ function NavBar() {
           </DrawerBody>
           <DrawerFooter p={2} justifyContent={"start"}>
             <Box display={"flex"} flexDirection={"column"}>
-              <Link href="#" color={"white"}>
+              <Link as={ReactRouterLink} to="#" color={"white"}>
                 About
               </Link>
-              <Link href="#" color={"white"}>
+              <Link as={ReactRouterLink} to="#" color={"white"}>
                 GitHub repo
               </Link>
-              <Link href="#" color={"white"}>
+              <Link as={ReactRouterLink} to="#" color={"white"}>
                 Made By Phomolo Ntokoane
               </Link>
             </Box>

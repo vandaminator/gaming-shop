@@ -1,6 +1,6 @@
 import GameDb from "./utils/data/data";
 import { NavBar, Main } from "./components/componets";
-import { Box } from "@chakra-ui/react";
+import { Box, Grid } from "@chakra-ui/react";
 
 function App() {
   return (
