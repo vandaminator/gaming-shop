@@ -50,7 +50,6 @@ function TopGames2() {
   };
 
   useEffect(() => {
-    console.log(current)
     const game = topgames[currentGameNum];
     const {
       name,

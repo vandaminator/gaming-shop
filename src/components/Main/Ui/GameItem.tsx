@@ -1,12 +1,13 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
 import {
   Box,
-  Icon,
   IconButton,
   Image,
   Text,
   Flex,
   Stack,
+  Button,
 } from "@chakra-ui/react";
 import { Result } from "../../../utils/data/objects/types/GameListTypes";
 import { ArrowLeft, ArrowRight } from "react-feather";
@@ -27,17 +28,22 @@ function GameItem({ game }: GameItemProps) {
   const handleNumChange = (way: "next" | "back") => {
     const isFirst = currentNum === 0;
     const isLast = currentNum === 4;
+    const currentBgIndex = screenshoots.indexOf(bgImage);
     if (way === "next") {
-      if (isLast) setCurrentNum(0);
-      else setCurrentNum(currentNum + 1);
-      setBgImage(screenshoots[currentNum])
+      if (isLast) {
+        setCurrentNum(0);
+        setBgImage(screenshoots[0]);
+      } else {
+        setCurrentNum(currentNum + 1);
+        setBgImage(screenshoots[currentBgIndex + 1]);
+      }
+      setBgImage(screenshoots[currentNum]);
     }
     if (way === "back") {
+      setBgImage(screenshoots[currentNum]);
       if (isFirst) setCurrentNum(4);
       else setCurrentNum(currentNum - 1);
-      setBgImage(screenshoots[currentNum])
     }
-    
   };
 
   const pics = screenshoots.map((value, index) => {
@@ -82,8 +88,24 @@ function GameItem({ game }: GameItemProps) {
             }}
           />
         </Flex>
-        <Text>{name}</Text>
-        <Text>{"R " + price.toString()}</Text>
+        <Text color={"white"} fontWeight={"semibold"}>
+          {name}
+        </Text>
+        <Text color={"white"} fontWeight={"semibold"}>
+          {"R " + price.toString()}
+        </Text>
+        <Button
+        as={motion.button}
+        w='full'
+        my={"10px"}
+        bgColor={"#0c1d2c"}
+        color={'white'}
+        justifySelf={{ xl: "end" }}
+        whileHover={{ scale: "1.1", color: "#0c1d2c" }}
+        whileTap={{ scale: "0.9" }}
+      >
+        More Info
+      </Button>
       </Box>
     </Box>
   );

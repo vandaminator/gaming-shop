@@ -1,4 +1,5 @@
-import { Box, Center, Container, SystemStyleObject } from "@chakra-ui/react";
+import { Routes, Route } from "react-router-dom";
+import { Box, Center, SystemStyleObject } from "@chakra-ui/react";
 import MainPage from "./MainPage";
 
 const styles: SystemStyleObject = {
@@ -17,7 +18,10 @@ function Main() {
   return (
     <Center w="full">
       <Box sx={styles}>
-        <MainPage />
+        <Routes>
+          <Route path="/" element={<MainPage />} />
+          <Route path="/yo" element={<Box bgColor={'red'} h={'200px'} />} /> 
+        </Routes>
       </Box>
     </Center>
   );
