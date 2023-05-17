@@ -8,10 +8,15 @@ import { Result } from "./objects/types/GameListTypes";
 class GameDb {
   infoGames = gameData;
   listGames = gameList.results;
+  gamesId = this.listGames.map(value => value.id.toString())
   screenShots = gameScreenShots;
   genres = gameGenres;
   tags = gameTags;
   numGames = this.listGames.length;
+
+  isIdValid(id: string) {
+    return this.gamesId.includes(id)
+  }
 
   showList(start: number = 0, number: number = 1) {
     // gets @listGames and shows a said number of games
@@ -26,7 +31,24 @@ class GameDb {
     // infoGames is an object with information on games
     // and the keys are the id of the game which give information
     // on a game
+    const idNotExist = !this.isIdValid(id)
+    if (idNotExist) return 'not found' 
     return this.infoGames[id];
+  }
+
+  showScreenshots(id: string) {
+    const idNotExist = !this.isIdValid(id)
+    if (idNotExist) return 'not found' 
+    return this.screenShots[id]
+  }
+
+  showGenresTags(id: string) {
+    const game = this.showData(id)
+    if (game === 'not found') return game;
+    return {
+      genres: game.genres.map(value => value.name),
+      tags: game.tags.map(value => value.name)
+    }
   }
 
   showFilter(genres: string[], tags: string[]): Result[] {
@@ -69,8 +91,12 @@ class GameDb {
     id to get the game
     number to make it return a specified number of games
     */
-    const itemGenres = this.showData(id).genres.map((value) => value.name);
-    const itemTags = this.showData(id).tags.map((value) => value.name);
+
+    const item = this.showGenresTags(id)
+    if (item === 'not found') return item;
+
+    const itemGenres = item.genres
+    const itemTags = item.tags
 
     // shallow copy to not mess up class list games
     const Games = this.listGames.slice();

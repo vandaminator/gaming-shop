@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
-import { Box, Center, SystemStyleObject } from "@chakra-ui/react";
+import { Box, Center, SystemStyleObject, Text } from "@chakra-ui/react";
 import MainPage from "./MainPage";
+import GameProduct from "./GameProduct";
 
 const styles: SystemStyleObject = {
   width: {
@@ -11,7 +12,7 @@ const styles: SystemStyleObject = {
   },
 
   color: "accentBlue",
-  padding: '20px'
+  padding: "20px",
 };
 
 function Main() {
@@ -19,8 +20,17 @@ function Main() {
     <Center w="full">
       <Box sx={styles}>
         <Routes>
-          <Route path="/" element={<MainPage />} />
-          <Route path="/yo" element={<Box bgColor={'red'} h={'200px'} />} /> 
+          <Route index element={<MainPage />} />
+          <Route path="/yo" element={<Box bgColor={"red"} h={"200px"} />} />
+          <Route path="/game/:id" element={<GameProduct />} />
+          <Route
+            path="*"
+            element={
+              <Text fontSize={"6xl"} fontWeight={"bold"}>
+                Not found
+              </Text>
+            }
+          />
         </Routes>
       </Box>
     </Center>
