@@ -95,6 +95,7 @@ function TopGames2() {
         >
           <TopInfo
             changeImg={setCurrentBg}
+            id={currentGameInfo.id}
             name={currentGameInfo.name}
             rating={currentGameInfo.rating}
             ratings={currentGameInfo.ratingList}

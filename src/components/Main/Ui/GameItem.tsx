@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link as ReactRouterLink } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
   Box,
@@ -9,6 +10,7 @@ import {
   Stack,
   Button,
 } from "@chakra-ui/react";
+import { LinkBox, LinkOverlay } from "@chakra-ui/react";
 import { Result } from "../../../utils/data/objects/types/GameListTypes";
 import { ArrowLeft, ArrowRight } from "react-feather";
 
@@ -17,7 +19,7 @@ export interface GameItemProps {
 }
 
 function GameItem({ game }: GameItemProps) {
-  const { name, price, short_screenshots } = game;
+  const { name, price, short_screenshots, id } = game;
 
   const images = short_screenshots.map((value) => value.image);
   const screenshoots = images.slice(0, 5);
@@ -94,18 +96,22 @@ function GameItem({ game }: GameItemProps) {
         <Text color={"white"} fontWeight={"semibold"}>
           {"R " + price.toString()}
         </Text>
-        <Button
-        as={motion.button}
-        w='full'
-        my={"10px"}
-        bgColor={"#0c1d2c"}
-        color={'white'}
-        justifySelf={{ xl: "end" }}
-        whileHover={{ scale: "1.1", color: "#0c1d2c" }}
-        whileTap={{ scale: "0.9" }}
-      >
-        More Info
-      </Button>
+        <LinkBox>
+          <LinkOverlay as={ReactRouterLink} to={`/game/${id}`}>
+            <Button
+              as={motion.button}
+              w="full"
+              my={"10px"}
+              bgColor={"#0c1d2c"}
+              color={"white"}
+              justifySelf={{ xl: "end" }}
+              whileHover={{ scale: "1.1", color: "#0c1d2c" }}
+              whileTap={{ scale: "0.9" }}
+            >
+              More Info
+            </Button>
+          </LinkOverlay>
+        </LinkBox>
       </Box>
     </Box>
   );

@@ -4,8 +4,11 @@ import Ratings from "./Ratings";
 import { StarIcon } from "@heroicons/react/20/solid";
 import { motion } from "framer-motion";
 import { Result } from "../../../../utils/data/objects/types/GameScreenShotsTypes";
+import GameRating from "../../Ui/GameRating";
+import NavLinkButton from "../../Ui/NavLinkButton";
 
 export interface TopInfoProps {
+  id: number
   name: string;
   rating: number;
   ratings: Rating[];
@@ -14,6 +17,7 @@ export interface TopInfoProps {
 }
 
 function TopInfo({
+  id,
   name,
   ratings,
   rating,
@@ -43,22 +47,14 @@ function TopInfo({
       <Text fontWeight={"bold"} fontSize={"2xl"}>
         {name}
       </Text>
-      <Flex align={"center"} fontWeight={"semibold"}>
+      {/* <Flex align={"center"} fontWeight={"semibold"}>
         <Text mr={"5px"}>Rating:</Text>
         <StarIcon width={"16px"} height={"16px"} color="yellow" />
         <Text>{rating}</Text>
-      </Flex>
+      </Flex> */}
+      <GameRating rating={rating} />
       <Ratings ratings={ratings} />
-      <Button
-        as={motion.button}
-        bgColor={"#0c1d2c"}
-        my={"10px"}
-        justifySelf={{ xl: "end" }}
-        whileHover={{ scale: "1.1", color: "#0c1d2c" }}
-        whileTap={{ scale: "0.9" }}
-      >
-        More Info
-      </Button>
+      <NavLinkButton link={'/game/' + id.toString()} />
       <Flex
         p={"5px"}
         display={{ base: "none", xl: "flex" }}

@@ -8,7 +8,7 @@ import {
   ModalBody,
   ModalCloseButton,
 } from "@chakra-ui/react";
-import { GameScreenshots } from "../../../utils/data/objects/types/GameScreenShotsTypes";
+import { GameScreenshots } from "../../../../utils/data/objects/types/GameScreenShotsTypes";
 import { PlusIcon } from "@heroicons/react/20/solid";
 
 export interface ScreenshotsProps {
@@ -29,18 +29,16 @@ function Screenshots({ screenshotsinfo }: ScreenshotsProps) {
     <>
       <Flex w={"60%"}>
         {boxes}
-        <IconButton aria-label="modal screenshots" icon={<PlusIcon />} />
+        <IconButton aria-label="modal screenshots" onClick={onOpen} icon={<PlusIcon />} />
       </Flex>
 
-      <Modal isOpen={isOpen} onClose={onClose} size={'xl'}>
+      <Modal isOpen={isOpen} onClose={onClose} size={"xl"}>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Screenshots</ModalHeader>
           <ModalCloseButton />
-          <ModalBody>
-            
-          </ModalBody>
-          <ModalFooter></ModalFooter>
+          <ModalBody>hello</ModalBody>
+          <ModalFooter>hello</ModalFooter>
         </ModalContent>
       </Modal>
     </>
