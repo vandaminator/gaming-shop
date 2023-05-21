@@ -8,14 +8,14 @@ import { Result } from "./objects/types/GameListTypes";
 class GameDb {
   infoGames = gameData;
   listGames = gameList.results;
-  gamesId = this.listGames.map(value => value.id.toString())
+  gamesId = this.listGames.map((value) => value.id.toString());
   screenShots = gameScreenShots;
   genres = gameGenres;
   tags = gameTags;
   numGames = this.listGames.length;
 
   isIdValid(id: string) {
-    return this.gamesId.includes(id)
+    return this.gamesId.includes(id);
   }
 
   showList(start: number = 0, number: number = 1) {
@@ -31,24 +31,24 @@ class GameDb {
     // infoGames is an object with information on games
     // and the keys are the id of the game which give information
     // on a game
-    const idNotExist = !this.isIdValid(id)
-    if (idNotExist) return 'not found' 
+    const idNotExist = !this.isIdValid(id);
+    if (idNotExist) return "not found";
     return this.infoGames[id];
   }
 
   showScreenshots(id: string) {
-    const idNotExist = !this.isIdValid(id)
-    if (idNotExist) return 'not found' 
-    return this.screenShots[id]
+    const idNotExist = !this.isIdValid(id);
+    if (idNotExist) return "not found";
+    return this.screenShots[id];
   }
 
   showGenresTags(id: string) {
-    const game = this.showData(id)
-    if (game === 'not found') return game;
+    const game = this.showData(id);
+    if (game === "not found") return game;
     return {
-      genres: game.genres.map(value => value.name),
-      tags: game.tags.map(value => value.name)
-    }
+      genres: game.genres.map((value) => value.name),
+      tags: game.tags.map((value) => value.name),
+    };
   }
 
   showFilter(genres: string[], tags: string[]): Result[] {
@@ -92,11 +92,11 @@ class GameDb {
     number to make it return a specified number of games
     */
 
-    const item = this.showGenresTags(id)
-    if (item === 'not found') return item;
+    const item = this.showGenresTags(id);
+    if (item === "not found") return item;
 
-    const itemGenres = item.genres
-    const itemTags = item.tags
+    const itemGenres = item.genres;
+    const itemTags = item.tags;
 
     // shallow copy to not mess up class list games
     const Games = this.listGames.slice();
@@ -174,24 +174,54 @@ class GameDb {
         ratings_count: otherRatingNum,
       } = other;
 
-      const gamePopularScore = gameNumber + gameRatingNum + gameReviewNum
-      const otherPopularScore = otherNumber + otherRatingNum + otherReviewNum
+      const gamePopularScore = gameNumber + gameRatingNum + gameReviewNum;
+      const otherPopularScore = otherNumber + otherRatingNum + otherReviewNum;
 
-      const gameMoreOther = gamePopularScore > otherPopularScore
-      const otherMoreGame = gamePopularScore < otherPopularScore
+      const gameMoreOther = gamePopularScore > otherPopularScore;
+      const otherMoreGame = gamePopularScore < otherPopularScore;
 
       if (gameMoreOther) return -1;
       if (otherMoreGame) return 1;
-      return 0
+      return 0;
     };
-    games.sort(sortTop)
-    const showGames = games.slice(0, number)
+    games.sort(sortTop);
+    const showGames = games.slice(0, number);
     const gameInfos = showGames.map((value) => {
-      const {id} = value
-      const game = this.showData(id.toString())
-      return game
-    })
-    return gameInfos
+      const { id } = value;
+      const game = this.showData(id.toString());
+      return game;
+    });
+    return gameInfos;
+  }
+
+  searchGames(
+    gameName: string,
+    filters: { genres?: string[]; tags?: string[] }
+  ) {
+    const { genres, tags } = filters;
+    const games = this.listGames;
+    const matchingGames = games.filter((game) => {
+      const lowerCaseName = game.name.toLowerCase();
+      const lowerCaseSearchTerm = gameName.toLowerCase();
+
+      const isNameThere = gameName !== "";
+      const nameMatches = isNameThere
+        ? lowerCaseName.includes(lowerCaseSearchTerm)
+        : true;
+
+      const gameGenres = game.genres.map((value) => value.name);
+      const gameTags = game.genres.map((value) => value.name);
+      const genresMatch = genres
+        ? genres.every((genre) => gameGenres.includes(genre))
+        : true;
+      const tagsMatch = tags
+        ? tags.every((tag) => gameTags.includes(tag))
+        : true;
+
+      return nameMatches && genresMatch && tagsMatch;
+    });
+
+    return matchingGames;
   }
 }
 export default GameDb;

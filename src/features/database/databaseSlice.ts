@@ -8,7 +8,8 @@ const initialState = {
     topGames: topGames,
     genres: gameDb.genres,
     tags: gameDb.tags,
-    numGames: gameDb.numGames
+    numGames: gameDb.numGames,
+    listGames: gameDb.listGames,
 }
 
 const dbSlice = createSlice({

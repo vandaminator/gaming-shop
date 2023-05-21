@@ -1,9 +1,10 @@
-import GameDb from "../../utils/data/data";
 import { GameData } from "../../utils/data/objects/types/GameDataTypes";
+import { Result } from "../../utils/data/objects/types/GameListTypes";
 
 export interface gameDbType {
-    topGames: GameData[];
-    genres: string[];
-    tags: string[];
-    numGames: number;
+  topGames: ("not found" | GameData)[];
+  genres: string[];
+  tags: string[];
+  numGames: number;
+  listGames: Result[];
 }
