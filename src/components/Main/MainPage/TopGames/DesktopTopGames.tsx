@@ -5,7 +5,7 @@ import { StarIcon } from "@heroicons/react/20/solid";
 import { Developer } from "../../../../utils/data/objects/types/GameDataTypes";
 import GenTag from "../../Ui/GenTag";
 import { motion } from "framer-motion";
-import Ratings from "./Ratings";
+import Ratings from "../../Ui/Ratings";
 
 function DesktopTopGames({
   background_image,

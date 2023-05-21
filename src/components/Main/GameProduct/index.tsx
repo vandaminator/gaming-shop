@@ -4,6 +4,10 @@ import * as Icons from "react-icons/fa";
 import GameDb from "../../../utils/data/data";
 import Screenshots from "./ScreenshotsComp";
 import GameRating from "../Ui/GameRating";
+import BuyButton from "../Ui/BuyButton";
+import GameInfo from "./GameInfo";
+import GameProps from "./GameProps";
+import GamesList from "../Ui/GamesList";
 
 function GameProduct() {
   const id = useParams().id;
@@ -24,6 +28,7 @@ function GameProduct() {
     ratings,
   } = game;
 
+  const similarGames = gameDb.showSimilar(id, 6);
   const screenshots = gameDb.showScreenshots(id);
 
   return (
@@ -34,27 +39,23 @@ function GameProduct() {
           <Screenshots screenshotsinfo={screenshots} />
         )}
       </Flex>
-      <Box my={"20px"} bgColor={"navyBlue"} p={"10px"} borderRadius={"lg"}>
-        <Text as="u" fontSize={"3xl"} fontWeight={"bold"}>
-          {name}
-        </Text>
-        <GameRating rating={rating} color={"white"}  />
-      </Box>
-      <Button
-        w="full"
-        color={"white"}
-        bgColor={"accentBlue"}
-        fontWeight={"bold"}
-        _hover={{
-          color: "black"
-        }}
-      >
-        <Flex align={'center'} fontSize={"lg"}>
-          <Text mx={'10px'}>{"R " + price.toString()}</Text>
-          <Icons.FaCartArrowDown />
-        </Flex>
-      </Button>
-      <Text my={'20px'}>{description_raw}</Text>
+      <GameInfo rating={rating} ratings={ratings} name={name} />
+      <BuyButton price={price} />
+      <Text my={"20px"}>{description_raw}</Text>
+      <GameProps genres={genres} tags={tags} />
+      {similarGames !== "not found" && (
+        <>
+          <Text
+            my={"20px"}
+            fontWeight={"bold"}
+            color={"white"}
+            fontSize={"2xl"}
+          >
+            Similar Games
+          </Text>
+          <GamesList listGames={similarGames} />
+        </>
+      )}
     </Box>
   );
 }

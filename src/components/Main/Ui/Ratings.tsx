@@ -1,11 +1,12 @@
-import { Box, Flex, Text } from "@chakra-ui/react";
-import { Rating } from "../../../../utils/data/objects/types/GameDataTypes";
+import { Box, Flex, SystemStyleObject, Text } from "@chakra-ui/react";
+import { Rating } from "../../../utils/data/objects/types/GameDataTypes";
 
 interface RatingsProps {
   ratings: Rating[];
+  ratingsTextStyles?: SystemStyleObject;
 }
 
-function Ratings({ ratings }: RatingsProps) {
+function Ratings({ ratings, ratingsTextStyles = {} }: RatingsProps) {
   const rates = ratings.map((value, index) => {
     const { percent: Percent, title } = value;
     const percent = Percent.toString() + "%";
@@ -41,7 +42,12 @@ function Ratings({ ratings }: RatingsProps) {
     const { title, color } = value;
 
     return (
-      <Flex gap={'5px'} key={index} w={"fit-content"} fontSize={"sm"} align={'baseline'}>
+      <Flex
+        gap={"5px"}
+        key={index}
+        w={"fit-content"}
+        align={"baseline"}
+      >
         <Box w={"10px"} h={"10px"} bg={color} borderRadius={"full"} />
         <Text>{title}</Text>
       </Flex>
@@ -53,7 +59,9 @@ function Ratings({ ratings }: RatingsProps) {
       <Flex w={"full"} h={"30px"}>
         {rates}
       </Flex>
-      <Flex w={"full"} wrap={"wrap"} gap={'10px'}>{colorMeaning}</Flex>
+      <Flex w={"full"} wrap={"wrap"} gap={"10px"} sx={ratingsTextStyles}>
+        {colorMeaning}
+      </Flex>
     </>
   );
 }

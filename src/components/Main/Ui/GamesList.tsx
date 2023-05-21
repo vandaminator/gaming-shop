@@ -1,15 +1,15 @@
 import { motion } from "framer-motion";
 import { Grid, Button } from "@chakra-ui/react";
-import { useSelector } from "react-redux";
-import { storeProps } from "../../../types";
-import GameDb from "../../../../utils/data/data";
 import { useState } from "react";
-import GameItem from "../../Ui/GameItem";
+import GameItem from "./GameItem";
+import { Result } from "../../../utils/data/objects/types/GameListTypes";
 
-function Games() {
-  const gameDb = new GameDb();
-  const { listGames, numGames } = gameDb;
+export interface GameListProps {
+  listGames: Result[];
+}
 
+function GamesList({ listGames }: GameListProps) {
+  const gamesNum = listGames.length
   const [shownNum, setShownNum] = useState(10);
   const [currentGames, setCurrntGames] = useState(listGames.slice(0, shownNum));
 
@@ -33,7 +33,7 @@ function Games() {
       </Grid>
       <Button
         as={motion.button}
-        display={{ base: shownNum <= numGames ? "inline-flex" : "none" }}
+        display={{ base: shownNum <= gamesNum ? "inline-flex" : "none" }}
         w="full"
         my={"10px"}
         bgColor={"#0c1d2c"}
@@ -49,4 +49,4 @@ function Games() {
   );
 }
 
-export default Games;
+export default GamesList;

@@ -61,7 +61,7 @@ function NavBar() {
         </Button>
         <LinkBox display={"flex"} alignItems={"center"}>
           <Image src={icons.aLogo} w="60px" alt="" />
-          <LinkOverlay as={ReactRouterLink} to="#">
+          <LinkOverlay as={ReactRouterLink} to="/">
             <Text
               id="gaming-logo"
               fontWeight={"bold"}

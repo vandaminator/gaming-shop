@@ -1,6 +1,6 @@
 import { Box, Button, Flex, Image, Text } from "@chakra-ui/react";
 import { Rating } from "../../../../utils/data/objects/types/GameDataTypes";
-import Ratings from "./Ratings";
+import Ratings from "../../Ui/Ratings";
 import { StarIcon } from "@heroicons/react/20/solid";
 import { motion } from "framer-motion";
 import { Result } from "../../../../utils/data/objects/types/GameScreenShotsTypes";
