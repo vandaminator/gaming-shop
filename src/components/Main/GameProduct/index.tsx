@@ -8,6 +8,7 @@ import BuyButton from "../Ui/BuyButton";
 import GameInfo from "./GameInfo";
 import GameProps from "./GameProps";
 import GamesList from "../Ui/GamesList";
+import { useState } from "react";
 
 function GameProduct() {
   const id = useParams().id;
@@ -30,13 +31,15 @@ function GameProduct() {
 
   const similarGames = gameDb.showSimilar(id, 6);
   const screenshots = gameDb.showScreenshots(id);
+  
+  const [bgImg, setBgImage] = useState(background_image)
 
   return (
     <Box>
-      <Flex direction={{ base: "column", xl: "row" }}>
-        <Image src={background_image} alt="" mb={"10px"} />
+      <Flex direction={{ base: "column", xl: "row-reverse" }}>
+        <Image src={bgImg} alt="" mb={"10px"} w={{xl: "80%"}}/>
         {screenshots !== "not found" && (
-          <Screenshots screenshotsinfo={screenshots} />
+          <Screenshots screenshotsinfo={screenshots}/>
         )}
       </Flex>
       <GameInfo rating={rating} ratings={ratings} name={name} />
