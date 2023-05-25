@@ -17,12 +17,13 @@ import {
   Link,
   Text,
   LinkOverlay,
-  LinkBox, Icon
+  LinkBox,
+  Icon,
 } from "@chakra-ui/react";
-import { Link as ReactRouterLink } from "react-router-dom";
+import { Link as ReactRouterLink, useNavigate } from "react-router-dom";
 import * as icons from "../icons";
 import MenuItem from "./MenuItem";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { storeProps } from "../types";
 import { Bars3Icon, MagnifyingGlassIcon } from "@heroicons/react/20/solid";
@@ -35,15 +36,18 @@ function NavBar() {
   );
 
   const menuItems = menuItemsInfo.map((value, index) => {
-    const { icon, link, name } = value;
+    const { link, name } = value;
     return <MenuItem link={link} name={name} key={index} />;
   });
+
+  const [search, setSearch] = useState("");
+  const navigate = useNavigate()
 
   return (
     <>
       <Box
         bg={"navyBlue"}
-        w={'full'}
+        w={"full"}
         padding={"29px"}
         color={"white"}
         display={"flex"}
@@ -57,7 +61,7 @@ function NavBar() {
           _hover={{ bg: "inherit" }}
           onClick={onOpen}
         >
-          <Icon w='60px' h='60px' color='accentBlue' children={<Bars3Icon />} />
+          <Icon w="60px" h="60px" color="accentBlue" children={<Bars3Icon />} />
         </Button>
         <LinkBox display={"flex"} alignItems={"center"}>
           <Image src={icons.aLogo} w="60px" alt="" />
@@ -90,9 +94,21 @@ function NavBar() {
           <InputLeftElement
             children={<MagnifyingGlassIcon color="#00BFFF" width={"20px"} />}
           />
-          <Input bg={"inherit"} borderRadius={"99"} placeholder="Search ..." />
+          <Input
+            bg={"inherit"}
+            borderRadius={"99"}
+            placeholder="Search ..."
+            value={search}
+            onInput={(e) => {
+              setSearch(e.currentTarget.value);
+            }}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') navigate(`/search?q=${search}`)
+            }}
+          />
         </InputGroup>
       </Box>
+
       <Drawer
         isOpen={isOpen}
         placement="left"

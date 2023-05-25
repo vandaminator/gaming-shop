@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import { Box, Center, SystemStyleObject, Text } from "@chakra-ui/react";
 import MainPage from "./MainPage";
 import GameProduct from "./GameProduct";
+import Search from "./Search";
 
 const styles: SystemStyleObject = {
   width: {
@@ -21,7 +22,7 @@ function Main() {
       <Box sx={styles}>
         <Routes>
           <Route index element={<MainPage />} />
-          <Route path="/yo" element={<Box bgColor={"red"} h={"200px"} />} />
+          <Route path="/search" element={<Search />} />
           <Route path="/game/:id" element={<GameProduct />} />
           <Route
             path="*"

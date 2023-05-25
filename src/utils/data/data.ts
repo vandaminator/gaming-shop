@@ -196,7 +196,7 @@ class GameDb {
 
   searchGames(
     gameName: string,
-    filters: { genres?: string[]; tags?: string[] }
+    filters: { genres?: string[] | null; tags?: string[] | null }
   ) {
     const { genres, tags } = filters;
     const games = this.listGames;
