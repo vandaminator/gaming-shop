@@ -3,6 +3,7 @@ import { Box } from "@chakra-ui/react";
 import { useSearchParams } from "react-router-dom";
 import GameDb from "../../../utils/data/data";
 import { isEqual } from "lodash";
+import SearchContainer from "./SearchContainer";
 
 function Search() {
   const gameDb = new GameDb();
@@ -40,7 +41,9 @@ function Search() {
   }, [Genres, Tags])
   
 
-  return <Box>{name}</Box>;
+  return <>
+  <SearchContainer search={name} listItems={listGames} />
+  </>;
 }
 
 export default Search;

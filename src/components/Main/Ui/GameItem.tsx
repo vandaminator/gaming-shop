@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link as ReactRouterLink } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
@@ -47,6 +47,8 @@ function GameItem({ game }: GameItemProps) {
       else setCurrentNum(currentNum - 1);
     }
   };
+
+  useEffect(() => setBgImage(game.background_image), [game])
 
   const pics = screenshoots.map((value, index) => {
     const isCurrentImg = index === currentNum;

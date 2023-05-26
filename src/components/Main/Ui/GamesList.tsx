@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { Grid, Button } from "@chakra-ui/react";
 import { useState } from "react";
@@ -9,7 +10,7 @@ export interface GameListProps {
 }
 
 function GamesList({ listGames }: GameListProps) {
-  const gamesNum = listGames.length
+  const gamesNum = listGames.length;
   const [shownNum, setShownNum] = useState(10);
   const [currentGames, setCurrntGames] = useState(listGames.slice(0, shownNum));
 
@@ -21,6 +22,9 @@ function GamesList({ listGames }: GameListProps) {
   const Games = currentGames.map((value, index) => {
     return <GameItem game={value} key={index} />;
   });
+
+  useEffect(() => {setCurrntGames(listGames.slice(0, shownNum))
+  setShownNum(10)}, [listGames]);
 
   return (
     <>
