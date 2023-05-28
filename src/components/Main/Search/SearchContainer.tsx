@@ -1,4 +1,5 @@
 import React from "react";
+import { useDisclosure } from "@chakra-ui/react";
 import { Box, Button, Flex, Text } from "@chakra-ui/react";
 import { Result } from "../../../utils/data/objects/types/GameListTypes";
 import GamesList from "../Ui/GamesList";
@@ -6,17 +7,10 @@ import GamesList from "../Ui/GamesList";
 type Props = {
   search: string;
   listItems: Result[];
-  gentag?: {
-    Genres: string[] | null;
-    Tags: string[] | null;
-  };
-  gentagSetters?: {
-    setGenres: React.Dispatch<React.SetStateAction<string[] | null>>;
-    setTags: React.Dispatch<React.SetStateAction<string[] | null>>;
-  };
+  onOpen: () => void
 };
 
-function SearchContainer({ search, listItems, gentag, gentagSetters }: Props) {
+function SearchContainer({ search, listItems, onOpen}: Props) {
   const numItems = listItems.length;
   const isItems = numItems > 0
   const isSearchThere = search !== "";
@@ -36,6 +30,7 @@ function SearchContainer({ search, listItems, gentag, gentagSetters }: Props) {
           borderRadius={"md"}
           justifySelf={"end"}
           display={isItems ? "inline-flex" : "none"}
+          onClick={onOpen}
         >
           Filter
         </Button>

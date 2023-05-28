@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
-import { Box } from "@chakra-ui/react";
+import { useState, useEffect, useRef } from "react";
+import { useDisclosure } from "@chakra-ui/react";
 import { useSearchParams } from "react-router-dom";
 import GameDb from "../../../utils/data/data";
 import { isEqual } from "lodash";
 import SearchContainer from "./SearchContainer";
+import SearchDrawer from "./SearchDrawer";
 
 function Search() {
   const gameDb = new GameDb();
@@ -22,28 +23,38 @@ function Search() {
   let tags: string[] | null = stringTags.split(",");
 
   genres = !isEqual(genres, [""]) ? genres : null;
-  tags = !isEqual(genres, [""]) ? genres : null;
+  tags = !isEqual(tags, [""]) ? tags : null;
 
   const [Genres, setGenres] = useState(genres);
   const [Tags, setTags] = useState(tags);
   const listGames = gameDb.searchGames(name, { genres: Genres, tags: Tags });
 
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   useEffect(() => {
     setSearchParams((prev) => {
-      const genres = Genres ? Genres : [""]
-      const tags = Tags ? Tags : [""]
+      const genres = Genres ? Genres : [""];
+      const tags = Tags ? Tags : [""];
 
-      prev.set('genres', genres.join(','))
-      prev.set('tags', tags.join(','))
+      prev.set("genres", genres.join(","));
+      prev.set("tags", tags.join(","));
 
-      return prev
-    })
-  }, [Genres, Tags])
-  
+      return prev;
+    });
+  }, [Genres, Tags]);
 
-  return <>
-  <SearchContainer search={name} listItems={listGames} />
-  </>;
+  return (
+    <>
+      <SearchContainer search={name} listItems={listGames} onOpen={onOpen} />
+      <SearchDrawer
+        isOpen={isOpen}
+        onClose={onClose}
+        onOpen={onClose}
+        gentag={{ Genres, Tags }}
+        gentagSetters={{ setGenres, setTags }}
+      />
+    </>
+  );
 }
 
 export default Search;
