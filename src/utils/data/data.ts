@@ -14,6 +14,15 @@ class GameDb {
   tags = gameTags;
   numGames = this.listGames.length;
 
+  gameGenres = this.genres.map((value): {type: "genre", name: string} => {
+    return { type: "genre", name: value };
+  });
+  gameTags = this.tags.map((value): {type: "tag", name: string} => {
+    return { type: "tag", name: value };
+  });
+
+  gameProps = [...this.gameGenres, ...this.gameTags];
+
   isIdValid(id: string) {
     return this.gamesId.includes(id);
   }
@@ -210,7 +219,7 @@ class GameDb {
         : true;
 
       const gameGenres = game.genres.map((value) => value.name);
-      const gameTags = game.genres.map((value) => value.name);
+      const gameTags = game.tags.map((value) => value.name);
       const genresMatch = genres
         ? genres.every((genre) => gameGenres.includes(genre))
         : true;
@@ -222,6 +231,25 @@ class GameDb {
     });
 
     return matchingGames;
+  }
+
+  searchGameProp(name: string, exclude: string[] = []) {
+    const gameProps = this.gameProps.slice();
+    const filterProps = gameProps.filter(({ name: value }) => {
+      const lowerCaseName = name.toLowerCase();
+      const lowerCaseValue = value.toLowerCase();
+
+      const nameMatches =
+        name !== "" ? lowerCaseName.includes(lowerCaseValue) : true;
+
+      return nameMatches;
+    });
+
+    const excludeProps = filterProps.filter(
+      ({ name }) => !exclude.includes(name)
+    );
+
+    return excludeProps;
   }
 }
 export default GameDb;

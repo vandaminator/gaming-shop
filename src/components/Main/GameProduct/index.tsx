@@ -37,7 +37,7 @@ function GameProduct() {
   return (
     <Box>
       <Flex direction={{ base: "column", xl: "row-reverse" }}>
-        <Image src={bgImg} alt="" mb={"10px"} w={{xl: "80%"}}/>
+        <Image src={bgImg} alt="" mb={"10px"} w={{xl: "80%", md: "80%"}}/>
         {screenshots !== "not found" && (
           <Screenshots screenshotsinfo={screenshots}/>
         )}

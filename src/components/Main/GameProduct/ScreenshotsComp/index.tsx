@@ -33,6 +33,7 @@ function Screenshots({ screenshotsinfo }: ScreenshotsProps) {
   return (
     <>
       <Flex
+      w={{xl: "40%"}}
         bgColor={"navyBlue"}
         align={"center"}
         justify={"space-around"}

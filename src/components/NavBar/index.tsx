@@ -128,13 +128,10 @@ function NavBar() {
           </DrawerBody>
           <DrawerFooter p={2} justifyContent={"start"}>
             <Box display={"flex"} flexDirection={"column"}>
-              <Link as={ReactRouterLink} to="#" color={"white"}>
-                About
-              </Link>
-              <Link as={ReactRouterLink} to="#" color={"white"}>
+              <Link as={ReactRouterLink} to="https://github.com/vandaminator/gaming-shop" color={"white"}>
                 GitHub repo
               </Link>
-              <Link as={ReactRouterLink} to="#" color={"white"}>
+              <Link as={ReactRouterLink} to="https://github.com/vandaminator" color={"white"}>
                 Made By Phomolo Ntokoane
               </Link>
             </Box>

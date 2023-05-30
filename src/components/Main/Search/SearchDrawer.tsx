@@ -12,19 +12,8 @@ import {
   Text,
   Flex,
 } from "@chakra-ui/react";
-import {
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  PopoverHeader,
-  PopoverBody,
-  PopoverFooter,
-  PopoverArrow,
-  PopoverCloseButton,
-  PopoverAnchor,
-} from "@chakra-ui/react";
-import { isEqual } from "lodash";
 import GenTag from "../Ui/GenTag";
+import FilterInput from "./FilterInput";
 
 type Props = {
   isOpen: boolean;
@@ -44,9 +33,13 @@ function SearchDrawer({
   isOpen,
   onClose,
   onOpen,
-  gentag: { Genres, Tags },
-  gentagSetters: { setGenres, setTags },
+  gentag,
+  gentagSetters,
 }: Props) {
+  const { Genres, Tags } = gentag
+  const { setGenres, setTags } = gentagSetters
+
+
   const props = {
     genre: { list: Genres, setter: setGenres },
     tag: { list: Tags, setter: setTags },
@@ -58,19 +51,20 @@ function SearchDrawer({
     const state = prop.list.filter((value) => value !== name);
     prop.setter(state);
   };
-  const mkProp = (name: string, type: "genre" | "tag") => {
+  const mkProp = (name: string, type: "genre" | "tag", index: number) => {
     return (
       <GenTag
         name={name}
         type={type}
         isButton
         btnFunc={() => handleRemoveProp(name, type)}
+        key={index}
       />
     );
   };
 
-  const genres = Genres ? Genres.map((value) => mkProp(value, "genre")) : null;
-  const tags = Tags ? Tags.map((value) => mkProp(value, "tag")) : null;
+  const genres = Genres ? Genres.map((value, index) => mkProp(value, "genre", index)) : null;
+  const tags = Tags ? Tags.map((value, index) => mkProp(value, "tag", index)) : null;
 
   return (
     <Drawer isOpen={isOpen} placement="right" onClose={onClose} size={"md"}>
@@ -80,11 +74,15 @@ function SearchDrawer({
         <DrawerHeader>Filter</DrawerHeader>
 
         <DrawerBody>
-          <Input placeholder="Search Genre or Tag" />
+          <FilterInput gentag={gentag} gentagSetters={gentagSetters}/>
           <Box>
             {genres && <>
             <Text>Genres</Text>
             <Flex wrap={'wrap'}>{genres}</Flex>
+            </>}
+            {tags && <>
+            <Text>Tags</Text>
+            <Flex wrap={'wrap'}>{tags}</Flex>
             </>}
           </Box>
         </DrawerBody>
